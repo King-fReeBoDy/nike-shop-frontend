@@ -1,8 +1,31 @@
 import { Link } from "react-router-dom";
 
 import { IoIosArrowBack } from "react-icons/io";
+import { FormEvent, ChangeEvent, useState } from "react";
 
 const Login = () => {
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleLogin = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setLogin((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  const handleFormSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    if (!login.email || !login.password) {
+      return;
+    }
+  };
+
+  console.log(login);
+
   return (
     <section className="h-screen flex justify-center items-center">
       <main className="w-[500px] mx-auto">
@@ -14,23 +37,23 @@ const Login = () => {
         <section className="">
           <h1 className="text-center text-2xl mb-5">Login</h1>
 
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <div className="mb-2">
               <p className="text-sm">Email</p>
               <input
                 type="text"
-                name=""
-                id=""
+                name="email"
                 className="border w-full py-2 px-3 rounded-lg"
+                onChange={handleLogin}
               />
             </div>
             <div className="mb-5">
               <p className="text-sm">Password</p>
               <input
                 type="password"
-                name=""
-                id=""
+                name="password"
                 className="border w-full py-2 px-3 rounded-lg"
+                onChange={handleLogin}
               />
             </div>
 

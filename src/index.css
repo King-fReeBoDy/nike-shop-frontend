@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 * {
-  font-family: "Open sans";
+  font-family: "Karla";
   /* border: 1px solid red; */
+}
+
+h2 {
+  font-family: "rigatoni";
 }

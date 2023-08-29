@@ -4,20 +4,23 @@ import { FiShoppingBag } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
 import { useState } from "react";
+import Cart from "./Cart";
+
 const Navbar = () => {
   const [features, setFeatures] = useState(false);
-  const [user] = useState(true);
+  const [user] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   return (
     <nav
       className={features ? "" : "border-b"}
       onMouseLeave={() => setFeatures(false)}
     >
-      <section className="flex justify-between items-center py-5 w-[90%] lg:w-[1200px] mx-auto">
+      <section className="flex justify-between items-center py-5 w-[90%] lg:w-[1024px] mx-auto">
         <Link to="/">
           <img src="/assets/pngwing.com.png" className="w-[40px]" alt="" />
         </Link>
 
-        <ul className="flex space-x-5 font-bold">
+        <ul className="hidden lg:flex space-x-5 font-bold">
           <Link to="." className="h-full">
             Home
           </Link>
@@ -27,25 +30,27 @@ const Navbar = () => {
           {user && <Link to="/dashboard">Dashboard</Link>}
         </ul>
 
-        {user ? (
-          <ul className="flex space-x-5 text-xl">
-            <li>
-              <CiSearch />
-            </li>
-            <li>
-              <FiShoppingBag />
-            </li>
-            <li>
-              <VscAccount />
-            </li>
-          </ul>
-        ) : (
-          <Link to="/login">
-            <button className="bg-black py-1 px-7 text-white rounded-lg">
-              Login
-            </button>
-          </Link>
-        )}
+        <section className="hidden lg:flex">
+          {user ? (
+            <ul className="flex space-x-5 text-xl">
+              <li>
+                <CiSearch />
+              </li>
+              <button onClick={() => setShowCart(!showCart)}>
+                <FiShoppingBag />
+              </button>
+              <li>
+                <VscAccount />
+              </li>
+            </ul>
+          ) : (
+            <Link to="/login">
+              <button className="bg-black py-1 px-7 text-white rounded-lg">
+                Login
+              </button>
+            </Link>
+          )}
+        </section>
       </section>
 
       {features && (
@@ -82,6 +87,13 @@ const Navbar = () => {
             </div>
           </div>
         </section>
+      )}
+      <Cart showCart={showCart} />
+      {showCart && (
+        <div
+          onClick={() => setShowCart(!showCart)}
+          className="fixed inset-0 w-full h-screen bg-black/75 z-[20]"
+        ></div>
       )}
     </nav>
   );

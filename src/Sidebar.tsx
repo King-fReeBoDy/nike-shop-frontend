@@ -7,13 +7,13 @@ const Sidebar = () => {
     <aside>
       <div>
         <div className="flex justify-between items-center mb-2">
-          <p className="font-bold">Gender</p>
+          <p className="font-bold text-lg">Gender</p>
           <p>
             <IoIosArrowDown />
           </p>
         </div>
 
-        <section className="text-sm space-y-1">
+        <section className="space-y-1">
           <div className="flex">
             <input type="checkbox" name="" id="" />
             <p className="ml-3">Men</p>
