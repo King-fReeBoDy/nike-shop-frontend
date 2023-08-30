@@ -12,15 +12,14 @@ const Register = () => {
         </Link>
 
         <section className="">
-          <h1 className="text-center text-2xl mb-5">Register</h1>
+          <h2 className="text-center text-2xl mb-5 font-bold">Register</h2>
 
           <form>
             <div className="mb-2">
               <p className="text-sm">Email</p>
               <input
                 type="text"
-                name=""
-                id=""
+                name="email"
                 className="border w-full py-2 px-3 rounded-lg"
               />
             </div>
@@ -28,8 +27,7 @@ const Register = () => {
               <p className="text-sm">Password</p>
               <input
                 type="password"
-                name=""
-                id=""
+                name="password"
                 className="border w-full py-2 px-3 rounded-lg"
               />
             </div>
@@ -37,8 +35,7 @@ const Register = () => {
               <p className="text-sm">Confirm Password</p>
               <input
                 type="password"
-                name=""
-                id=""
+                name="confrimpassword"
                 className="border w-full py-2 px-3 rounded-lg"
               />
             </div>
@@ -51,7 +48,7 @@ const Register = () => {
                   className=""
                 />
               </div>
-              <input type="file" name="" id="" />
+              <input type="file" name="files" id="" accept="image/*" />
             </div>
 
             <button className="w-full text-white text-center bg-black py-2 mb-5 rounded-lg">

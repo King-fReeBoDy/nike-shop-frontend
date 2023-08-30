@@ -4,10 +4,10 @@ import { IoIosArrowDown } from "react-icons/io";
 const Sidebar = () => {
   const [showMore, setShowMore] = useState(false);
   return (
-    <aside>
+    <aside className="w-full">
       <div>
-        <div className="flex justify-between items-center mb-2">
-          <p className="font-bold text-lg">Gender</p>
+        <div className="flex w-full justify-between items-center mb-2">
+          <h2 className="font-bold text-lg">Gender</h2>
           <p>
             <IoIosArrowDown />
           </p>

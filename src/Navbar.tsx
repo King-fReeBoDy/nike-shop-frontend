@@ -2,20 +2,21 @@ import { Link } from "react-router-dom";
 
 import { FiShoppingBag } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
-import { VscAccount } from "react-icons/vsc";
+
 import { useState } from "react";
 import Cart from "./Cart";
 
 const Navbar = () => {
   const [features, setFeatures] = useState(false);
-  const [user] = useState(false);
+  const [user] = useState(true);
   const [showCart, setShowCart] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   return (
     <nav
       className={features ? "" : "border-b"}
       onMouseLeave={() => setFeatures(false)}
     >
-      <section className="flex justify-between items-center py-5 w-[90%] lg:w-[1024px] mx-auto">
+      <section className="flex justify-between items-center py-5 w-[90%] xl:w-[1024px] mx-auto">
         <Link to="/">
           <img src="/assets/pngwing.com.png" className="w-[40px]" alt="" />
         </Link>
@@ -30,17 +31,35 @@ const Navbar = () => {
           {user && <Link to="/dashboard">Dashboard</Link>}
         </ul>
 
-        <section className="hidden lg:flex">
+        <section className="hidden lg:flex items-center">
           {user ? (
-            <ul className="flex space-x-5 text-xl">
+            <ul className="flex space-x-5 text-2xl">
               <li>
                 <CiSearch />
               </li>
               <button onClick={() => setShowCart(!showCart)}>
                 <FiShoppingBag />
               </button>
-              <li>
-                <VscAccount />
+              <li className="relative">
+                <div className=" w-7 h-7 rounded-full flex justify-center items-center overflow-hidden border-2 border-black">
+                  <img
+                    src="/assets/pexels-trarete-8502210.jpg"
+                    alt=""
+                    className="object-cover w-full h-full hover:cursor-pointer"
+                    onClick={() => setShowDetails(!showDetails)}
+                  />
+                </div>
+                {showDetails && (
+                  <section className="absolute z-10 top-8 -left-16 border text-sm rounded-lg bg-slate-50">
+                    <div className="py-2 px-4 border-b">
+                      <p>desmondkudjuh@gmail.com</p>
+                    </div>
+                    <Link to="/">
+                      <p className="py-2 px-4 border-b">Favorites</p>
+                    </Link>
+                    <p className="py-2 px-4 cursor-pointer">Logout</p>
+                  </section>
+                )}
               </li>
             </ul>
           ) : (
@@ -58,19 +77,19 @@ const Navbar = () => {
           <div className="fixed inset-x-0 z-10 bg-white flex justify-between  mx-auto py-5 w-[1200px]">
             <div className="flex space-x-20 justify-center w-full">
               <article>
-                <p className="font-bold text-lg">Features</p>
+                <h2 className="font-bold text-lg">Features</h2>
                 <p>New Arrivals</p>
                 <p>New Shoes</p>
                 <p>New Clothings</p>
               </article>
               <article>
-                <p className="font-bold text-lg">Best Read</p>
+                <h2 className="font-bold text-lg">Best Read</h2>
                 <p>Jordan Collections</p>
                 <p>Nike SB - The Vault</p>
                 <p>Sustainabilty</p>
               </article>
               <article>
-                <p className="font-bold text-lg">Shop Icons</p>
+                <h2 className="font-bold text-lg">Shop Icons</h2>
                 <p>Air Force 1</p>
                 <p>Air Jordan 1</p>
                 <p>Air Max</p>
@@ -88,7 +107,7 @@ const Navbar = () => {
           </div>
         </section>
       )}
-      <Cart showCart={showCart} />
+      <Cart showCart={showCart} setShowCart={setShowCart} />
       {showCart && (
         <div
           onClick={() => setShowCart(!showCart)}

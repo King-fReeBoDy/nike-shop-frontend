@@ -35,7 +35,7 @@ const Login = () => {
         </Link>
 
         <section className="">
-          <h1 className="text-center text-2xl mb-5">Login</h1>
+          <h2 className="text-center text-2xl mb-5 font-bold">Login</h2>
 
           <form onSubmit={handleFormSubmit}>
             <div className="mb-2">
