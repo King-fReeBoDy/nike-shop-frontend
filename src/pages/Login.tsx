@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
 import { IoIosArrowBack } from "react-icons/io";
-import { FormEvent, ChangeEvent, useState } from "react";
+import { FormEvent, ChangeEvent, useState, useContext } from "react";
+import { AuthAPI } from "../context/AuthContext";
 
 const Login = () => {
+  const { setUser } = useContext(AuthAPI);
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -17,11 +19,14 @@ const Login = () => {
     });
   };
 
-  const handleFormSubmit = (event: FormEvent) => {
+  const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (!login.email || !login.password) {
       return;
     }
+    const res = await fetch("http://localhost:8080");
+    const data = await res.json();
+    setUser(data);
   };
 
   console.log(login);

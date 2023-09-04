@@ -8,6 +8,7 @@ interface IAuth {
 interface IUser {
   id: number;
   email: string;
+  role: string;
   accessToken: string;
 }
 
