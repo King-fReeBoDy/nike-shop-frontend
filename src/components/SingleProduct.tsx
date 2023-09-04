@@ -36,6 +36,7 @@ const SingleProduct = () => {
             eveniet necessitatibus reprehenderit quibusdam assumenda ipsa
             inventore doloribus repellat, non libero error repellendus.
           </article>
+          <p className="text-3xl mb-5">$1234</p>
           <div className="flex justify-between items-center">
             <button
               onClick={handleAddToCart}

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Sidebar from "./Sidebar";
-import Products from "./Products";
+import Sidebar from "../components/Sidebar";
+import Products from "../components/Products";
 
 const Home = () => {
   const [toggle, setToggle] = useState(false);

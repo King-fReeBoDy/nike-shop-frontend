@@ -1,16 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 
-import SharedLayout from "./SharedLayout";
-import Home from "./Home";
-import Login from "./Login";
-import Register from "./Register";
-import Restricted from "./Restricted";
-import IsAuth from "./IsAuth";
-import SingleProduct from "./SingleProduct";
-import DashboardLayout from "./DashboardLayout";
-import GetAllProducts from "./GetAllProducts";
-import GetAllUsers from "./GetAllUsers";
-import GetAllFavorites from "./GetAllFavorites";
+import SharedLayout from "./layouts/SharedLayout";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Restricted from "./components/Restricted";
+import IsAuth from "./components/IsAuth";
+import SingleProduct from "./components/SingleProduct";
+import DashboardLayout from "./layouts/DashboardLayout";
+import GetAllProducts from "./pages/GetAllProducts";
+import GetAllUsers from "./pages/GetAllUsers";
 
 function App() {
   return (
@@ -29,10 +28,6 @@ function App() {
               <Route
                 path="/dashboard/allproducts"
                 element={<GetAllProducts />}
-              />
-              <Route
-                path="/dashboard/allfavorites"
-                element={<GetAllFavorites />}
               />
             </Route>
           </Route>

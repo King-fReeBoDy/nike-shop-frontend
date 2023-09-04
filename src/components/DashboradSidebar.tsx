@@ -1,4 +1,3 @@
-import { AiOutlineHeart } from "react-icons/ai";
 import { FiShoppingBag } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
 import { Link } from "react-router-dom";
@@ -12,7 +11,6 @@ const DashboradSidebar = () => {
         <div className="flex items-center justify-between mb-5 py-2 pr-4  transition-all duration-300 border-b">
           <p>Get all users</p>
           <p>
-            {" "}
             <VscAccount />
           </p>
         </div>
@@ -27,14 +25,14 @@ const DashboradSidebar = () => {
         </div>
       </Link>
 
-      <Link to="/dashboard/allfavorites">
+      {/* <Link to="/dashboard/allfavorites">
         <div className="flex items-center justify-between mb-5 py-2 pr-4  transition-all duration-300 border-b">
           <p>Get all favorites</p>
           <p>
             <AiOutlineHeart />
           </p>
         </div>
-      </Link>
+      </Link> */}
     </section>
   );
 };
