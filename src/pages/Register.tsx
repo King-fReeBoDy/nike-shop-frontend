@@ -1,8 +1,42 @@
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 import { IoIosArrowBack } from "react-icons/io";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const Register = () => {
+  const [register, setRegister] = useState({
+    email: "",
+    password: "",
+    confirmpassword: "",
+    // files: File[0],
+  });
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setRegister((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!register.email || !register.password || !register.confirmpassword) {
+      return console.log("Provide all credentials");
+    }
+    if (register.password !== register.confirmpassword) {
+      return console.log("Password do not match");
+    }
+    try {
+      const { data } = await axios.post("localhost:8080/api/auth/register");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <section className="h-screen flex justify-center items-center">
       <main className="w-[500px] mx-auto">
@@ -14,13 +48,14 @@ const Register = () => {
         <section className="">
           <h2 className="text-center text-2xl mb-5 font-bold">Register</h2>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-2">
               <p className="text-sm">Email</p>
               <input
                 type="text"
                 name="email"
                 className="border w-full py-2 px-3 rounded-lg"
+                onChange={handleChange}
               />
             </div>
             <div className="mb-2">
@@ -29,6 +64,7 @@ const Register = () => {
                 type="password"
                 name="password"
                 className="border w-full py-2 px-3 rounded-lg"
+                onChange={handleChange}
               />
             </div>
             <div className="mb-2">
@@ -37,6 +73,7 @@ const Register = () => {
                 type="password"
                 name="confrimpassword"
                 className="border w-full py-2 px-3 rounded-lg"
+                onChange={handleChange}
               />
             </div>
 
@@ -48,7 +85,13 @@ const Register = () => {
                   className=""
                 />
               </div>
-              <input type="file" name="files" id="" accept="image/*" />
+              <input
+                type="file"
+                name="files"
+                id=""
+                accept="image/*"
+                onChange={handleChange}
+              />
             </div>
 
             <button className="w-full text-white text-center bg-black py-2 mb-5 rounded-lg">

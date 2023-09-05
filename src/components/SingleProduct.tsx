@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { AuthAPI } from "../context/AuthContext";
 
 const SingleProduct = () => {
-  const [user] = useState(false);
+  const { user } = useContext(AuthAPI);
   const navigate = useNavigate();
   const handleAddToCart = () => {
     if (!user) {

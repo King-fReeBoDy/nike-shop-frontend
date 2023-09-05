@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { FormEvent, ChangeEvent, useState, useContext } from "react";
 import { AuthAPI } from "../context/AuthContext";
+import { saveToLocalStorage } from "../utils/localStorage";
+import axios from "axios";
+
+// type IUser = {
+//   id: number;
+//   email: string;
+//   role: string;
+//   image: string;
+//   accessToken: string;
+// };
 
 const Login = () => {
   const { setUser } = useContext(AuthAPI);
@@ -22,11 +32,16 @@ const Login = () => {
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (!login.email || !login.password) {
-      return;
+      return console.log("Provide all credentials");
     }
-    const res = await fetch("http://localhost:8080");
-    const data = await res.json();
-    setUser(data);
+
+    try {
+      const { data } = await axios.post("localhost:8080/api/auth/login", login);
+      setUser(data);
+      saveToLocalStorage(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   console.log(login);

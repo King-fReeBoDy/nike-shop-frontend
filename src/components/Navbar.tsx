@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Cart from "./Cart";
+import { AuthAPI } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user } = useContext(AuthAPI);
   const [features, setFeatures] = useState(false);
-  const [user] = useState(true);
+
   const [showCart, setShowCart] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   return (
@@ -28,11 +30,11 @@ const Navbar = () => {
           <button className="" onMouseEnter={() => setFeatures(true)}>
             News & Features
           </button>
-          {user && <Link to="/dashboard">Dashboard</Link>}
+          {user?.role === "admin" && <Link to="/dashboard">Dashboard</Link>}
         </ul>
 
         <section className="hidden lg:flex items-center">
-          {user ? (
+          {user?.email ? (
             <ul className="flex space-x-5 text-2xl">
               <li>
                 <CiSearch />

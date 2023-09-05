@@ -1,6 +1,8 @@
 type ILocalStorageUser = {
   id: number;
   email: string;
+  role: string;
+  image: string;
   accessToken: string;
 };
 
