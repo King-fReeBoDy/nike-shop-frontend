@@ -45,7 +45,7 @@ const Navbar = () => {
               <li className="relative">
                 <div className=" w-7 h-7 rounded-full flex justify-center items-center overflow-hidden border-2 border-black">
                   <img
-                    src="/assets/pexels-trarete-8502210.jpg"
+                    src={`http://localhost:8080/${user.img}`}
                     alt=""
                     className="object-cover w-full h-full hover:cursor-pointer"
                     onClick={() => setShowDetails(!showDetails)}

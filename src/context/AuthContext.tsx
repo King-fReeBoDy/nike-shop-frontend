@@ -9,7 +9,7 @@ interface IUser {
   id: number;
   email: string;
   role: string;
-  image: string;
+  img: string;
   accessToken: string;
 }
 

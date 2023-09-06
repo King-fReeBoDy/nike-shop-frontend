@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { IoIosArrowBack } from "react-icons/io";
 import { FormEvent, ChangeEvent, useState, useContext } from "react";
@@ -21,6 +21,8 @@ const Login = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleLogin = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -36,9 +38,17 @@ const Login = () => {
     }
 
     try {
-      const { data } = await axios.post("localhost:8080/api/auth/login", login);
+      const { data } = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        login
+      );
       setUser(data);
       saveToLocalStorage(data);
+      setLogin({
+        email: "",
+        password: "",
+      });
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

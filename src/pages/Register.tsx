@@ -8,35 +8,53 @@ const Register = () => {
     email: "",
     password: "",
     confirmpassword: "",
-    // files: File[0],
+    files: null,
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, value, files, type } = event.target;
 
     setRegister((prev) => {
       return {
         ...prev,
-        [name]: value,
+        [name]: type === "file" ? (files as FileList) : value,
       };
     });
   };
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
     if (!register.email || !register.password || !register.confirmpassword) {
       return console.log("Provide all credentials");
     }
     if (register.password !== register.confirmpassword) {
       return console.log("Password do not match");
     }
+    const formData = new FormData();
+    formData.append("email", register.email);
+    formData.append("password", register.password);
+    if (register.files) {
+      formData.append("files", register.files[0]);
+    }
+
     try {
-      const { data } = await axios.post("localhost:8080/api/auth/register");
+      const { data } = await axios.post(
+        "http://localhost:8080/api/auth/register",
+        formData
+      );
       console.log(data);
+      setRegister({
+        email: "",
+        password: "",
+        confirmpassword: "",
+        files: null,
+      });
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <section className="h-screen flex justify-center items-center">
       <main className="w-[500px] mx-auto">
@@ -71,7 +89,7 @@ const Register = () => {
               <p className="text-sm">Confirm Password</p>
               <input
                 type="password"
-                name="confrimpassword"
+                name="confirmpassword"
                 className="border w-full py-2 px-3 rounded-lg"
                 onChange={handleChange}
               />
